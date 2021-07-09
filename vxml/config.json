@@ -1,0 +1,56 @@
+{
+    "type": "app_config",
+    "version": 1,
+    "en-us": {
+        "audio_base_url": "file:///mediastore/voice/iva-product/feature-demo",
+        "actions": {
+            "max_fail": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            },
+            "hangup": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            },
+            "error": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            }
+        },
+        "dialogflow": {
+            "agent": "main"
+        }
+    },
+    "es-es": {
+        "audio_base_url": "file:///mediastore/voice/iva-product/feature-demo",
+        "actions": {
+            "max_fail": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            },
+            "hangup": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            },
+            "error": {
+                "type": "end",
+                "component": "global",
+                "node": "end",
+                "component_contained": true
+            }
+        },
+        "dialogflow": {
+            "agent": "main"
+        }
+    }
+}

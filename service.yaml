@@ -1,0 +1,34 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: feature-demo
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/vpc-access-egress: private-ranges-only
+        autoscaling.knative.dev/maxScale: '10'
+        run.googleapis.com/vpc-access-connector: projects/ee-appeng-devtest/locations/us-central1/connectors/connector-us-central1
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 609374349976-compute@developer.gserviceaccount.com
+      containers:
+      - image: us.gcr.io/ee-appeng-devtest/feature-demo:v13
+        env:
+        - name: VERSION
+          value: v13
+        - name: DEBUG
+          value: 'app* neuron*'
+        - name: REDIS_HOST
+          value: 10.12.128.4
+        - name: REDIS_PORT
+          value: '6379'
+        - name: PROJECT_ID
+          value: 'ee-appeng-devtest'
+        - name: TXL_PUBSUB_TOPIC
+          value: 'projects/ce-intrado-ccai-poc-sandbox-01/topics/transactional-logging-pubsub-topic'
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi

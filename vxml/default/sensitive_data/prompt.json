@@ -1,0 +1,75 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "secure_slot": true,
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "What's your card number?",
+                    "audio_url": "prompt_GetCardNum.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Card number please.",
+                        "audio_url": "prompt_GetCardNum_ni1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try once more. What's the card number?",
+                        "audio_url": "prompt_GetCardNum_ni2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, what's that number again?",
+                        "audio_url": "prompt_GetCardNum_nm1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try once more. What's the card number?",
+                        "audio_url": "prompt_GetCardNum_nm2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "always": {
+                "type": "rules",
+                "module": "default",
+                "component": "sensitive_data",
+                "node": "process"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

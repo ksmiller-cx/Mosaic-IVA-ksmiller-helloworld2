@@ -1,0 +1,23 @@
+{
+    "type": "rules",
+    "en-us": {
+        "actions": {
+            "success": {
+                "type": "rules",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "rules_AccountStatus",
+                "return_values": {
+                    "phone_num": "phone_num_rtn_val"
+                }
+            },
+            "idk": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_PhoneNumIDK",
+                "return_values": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_PhoneNumIDK.wav",
+                "verbiage": "Okay."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_TryAccountNum"
+            }
+        }
+    }
+}

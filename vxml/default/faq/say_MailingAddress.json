@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_MailingAddress.wav",
+                "verbiage": "The Mosaic CX mailing address is: 11650 Miracle Hills Drive, Omaha, Nebraska 68154."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "prompt",
+                "module": "default",
+                "component": "call_wrap",
+                "node": "prompt_CallWrap"
+            }
+        }
+    }
+}

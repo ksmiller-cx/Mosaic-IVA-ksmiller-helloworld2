@@ -1,0 +1,14 @@
+{
+    "type": "rules",
+    "node": "end_callbusinessrules",
+    "en-us": {
+        "actions": {
+            "always": {
+                "type": "exit",
+                "module": "default",
+                "component": "global",
+                "node": "exit"
+            }
+        }
+    }
+}

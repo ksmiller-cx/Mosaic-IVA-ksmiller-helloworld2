@@ -1,0 +1,13 @@
+{
+    "type": "rules",
+    "en-us": {
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "tech_support",
+                "node": "say_GizmoBroken"
+            }
+        }
+    }
+}

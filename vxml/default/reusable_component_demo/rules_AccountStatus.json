@@ -1,0 +1,33 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "found": {
+                "type": "prompt",
+                "module": "default",
+                "component": "call_wrap",
+                "node": "prompt_CallWrap",
+                "contained": true,
+                "completed": true,
+                "module_completed": true,
+                "module_contained": true
+            },
+            "not_found": {
+                "type": "rules",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "rules_MaxAttempts"
+            },
+            "multiple": {
+                "type": "rules",
+                "module": "default",
+                "component": "rc_get_street_num",
+                "node": "start",
+                "args": {
+                    "street_num_arr": "street_num_arr"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "type": "custom_config",
+    "version": 1,
+    "data": {
+        "payment_gen": {
+            "intent_group": "disambig",
+            "auth_treatment": "disambig",
+            "auth_tier": "none"
+        },
+        "how_are_you": {
+            "intent_group": "disambig",
+            "auth_treatment": "disambig",
+            "auth_tier": "none"
+        },
+        "tech_support": {
+            "intent_group": "disambig",
+            "auth_treatment": "disambig",
+            "auth_tier": "none"
+        },
+        "global_agent": {
+            "intent_group": "disambig",
+            "auth_treatment": "disambig",
+            "auth_tier": "none",
+            "allow_top_level_transfer": false
+        },
+        "payment_make": {
+            "intent_group": "payment",
+            "auth_treatment": "required",
+            "auth_tier": "normal"
+        },
+        "payment_make_past_due": {
+            "intent_group": "payment",
+            "auth_treatment": "required",
+            "auth_tier": "normal"
+        },
+        "internet_issue": {
+            "intent_group": "payment",
+            "auth_treatment": "required",
+            "auth_tier": "normal"
+        },
+        "bank_lookup": {
+            "intent_group": "payment",
+            "auth_treatment": "none",
+            "auth_tier": "none"
+        },
+        "bill_address": {
+            "intent_group": "faq",
+            "auth_treatment": "none",
+            "auth_tier": "none"
+        },
+        "hours": {
+            "intent_group": "faq",
+            "auth_treatment": "none",
+            "auth_tier": "none"
+        },
+        "reusable_component_demo": {
+            "intent_group": "faq",
+            "auth_treatment": "none",
+            "auth_tier": "none"
+        },
+        "infinite_loop": {
+            "intent_group": "faq",
+            "auth_treatment": "infinite_say",
+            "auth_tier": "none"
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "type": "rules",
+    "node": "process",
+    "en-us": {
+        "actions": {
+            "failure_internal": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "failure_mod10": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "failure_payment": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "success": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

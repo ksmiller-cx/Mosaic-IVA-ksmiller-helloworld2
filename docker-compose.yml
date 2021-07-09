@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+
+  feature:
+    image: cb-feature
+    container_name: feature
+    depends_on:
+      - redis
+    ports:
+      - "8082:8081"
+    environment:
+      - ENV=cb
+
+  redis:
+    image: us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/redis
+    ports:
+      - "6379:6379"
+
+  soma:
+    image: us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma
+    depends_on:
+      - feature
+    ports:
+      - "8080:8080"
+    environment:
+      - CBHOST=http://feature:8081
+
+networks:
+    default:
+        external:
+            name: cloudbuild

@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_PhoneNumNoMatch.wav",
+                "verbiage": "I don't see an account for that number."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_TryAccountNum"
+            }
+        }
+    }
+}

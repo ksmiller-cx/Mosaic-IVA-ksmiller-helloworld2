@@ -1,0 +1,25 @@
+{
+    "type": "rules",
+    "en-us": {
+        "actions": {
+            "found": {
+                "type": "rules",
+                "module": "default",
+                "component": "call_wrap",
+                "node": "prompt_CallWrap",
+                "contained": true,
+                "completed": true,
+                "module_completed": true,
+                "module_contained": true,
+                "return_values": {}
+            },
+            "not_found": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_MultiAcctNoMatch",
+                "return_values": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "success": {
+                "type": "say",
+                "module": "default",
+                "component": "payment",
+                "node": "say_PaymentSuccess"
+            }
+        }
+    }
+}

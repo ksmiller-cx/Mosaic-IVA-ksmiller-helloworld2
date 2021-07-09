@@ -1,0 +1,57 @@
+{
+    "type": "rules",
+    "en-us": {
+        "actions": {
+            "auth_required": {
+                "type": "rules",
+                "module": "default",
+                "component": "idv",
+                "node": "rules_DNISLookup",
+                "completed": true,
+                "contained": true,
+                "module_contained": true,
+                "module_completed": true
+            },
+            "intent_actions": {
+                "type": "rules",
+                "module": "default",
+                "component": "intent_actions",
+                "node": "rules_IntentActions",
+                "completed": true,
+                "contained": true,
+                "module_contained": true,
+                "module_completed": true
+            },
+            "how_are_you": {
+                "type": "prompt",
+                "module": "default",
+                "component": "disambig",
+                "node": "prompt_HowAreYou"
+            },
+            "payment_gen": {
+                "type": "prompt",
+                "module": "default",
+                "component": "disambig",
+                "node": "prompt_PaymentGen"
+            },
+            "tech_support": {
+                "type": "prompt",
+                "module": "default",
+                "component": "disambig",
+                "node": "prompt_TechSupport"
+            },
+            "global_agent": {
+                "type": "rules",
+                "module": "default",
+                "component": "disambig",
+                "node": "rules_MaxAgentAttempts"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

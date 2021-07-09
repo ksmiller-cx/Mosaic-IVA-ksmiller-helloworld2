@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 2,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_PaymentSuccess.wav",
+                "verbiage": "Got it. Payment complete"
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

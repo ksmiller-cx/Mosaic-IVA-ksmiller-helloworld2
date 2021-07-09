@@ -1,0 +1,26 @@
+{
+    "type": "rules",
+    "node": "start",
+    "en-us": {
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "greeting",
+                "node": "say_Greeting"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+[
+    {
+        "action_type": "prompt",
+        "event_type": "response",
+        "event_data": [
+            {
+                "interpretation": {
+                    "responseId": "73807072-c35a-4b1a-80f1-62467fc9b90c-ce5e18e2",
+                    "queryResult": {
+                        "queryText": "yes",
+                        "action": "make_a_payment",
+                        "parameters": {},
+                        "allRequiredParamsPresent": true,
+                        "fulfillmentText": "yes",
+                        "fulfillmentMessages": [
+                            {
+                                "text": {
+                                    "text": [
+                                        "yes"
+                                    ]
+                                }
+                            }
+                        ],
+                        "outputContexts": [
+                            {
+                                "name": "projects/ce-intrado-ccai-poc-sandbox-01/agent/sessions/9fc2a407-29ac-520a-9e74-3ea64c287148/contexts/repair-gen-model-followup",
+                                "lifespanCount": 2,
+                                "parameters": {
+                                    "Model.original": "eos",
+                                    "Model": "eos"
+                                }
+                            }
+                        ],
+                        "intent": {
+                            "name": "projects/ce-intrado-ccai-poc-sandbox-01/agent/intents/3f7302d1-7f36-4394-b41f-764d8b7e9a26",
+                            "displayName": "say_Repair-Gen-Model - yes",
+                            "liveAgentHandoff": true,
+                            "endInteraction": true
+                        },
+                        "intentDetectionConfidence": 1,
+                        "diagnosticInfo": {
+                            "end_conversation": true
+                        },
+                        "languageCode": "en",
+                        "sentimentAnalysisResult": {
+                            "queryTextSentiment": {
+                                "score": 0.6,
+                                "magnitude": 0.6
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+]

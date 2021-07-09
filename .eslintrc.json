@@ -1,0 +1,30 @@
+{
+    "extends": [
+        "plugin:jest/recommended",
+        "airbnb"
+    ],
+    "plugins": [
+        "jest"
+    ],
+    "rules": {
+        "import/newline-after-import": "off",
+        "no-useless-catch": "off",
+        "indent": ["warn", 4],
+        "camelcase": "off",
+        "no-multiple-empty-lines": "off",
+        "no-use-before-define": "off",
+        "max-len": ["warn", 120],
+        "no-else-return": "off",
+        "no-multi-assign": "off",
+        "global-require": "off",
+        "operator-linebreak": ["error", "after"],
+        "object-curly-spacing": "off",
+        "no-param-reassign": "off",
+        "prefer-arrow-callback": "off",
+        "no-unused-vars": ["error", {"vars": "all", "varsIgnorePattern": "^_$", "argsIgnorePattern": "^(_|session|logger|user_input|result)$"}]
+    },
+    "env": {
+        "node": true,
+        "jest/globals": true
+    }
+}

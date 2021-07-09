@@ -1,0 +1,200 @@
+# Make Sure that Soma app is production deployed in order to run the test cases then uncomment the below steps
+steps:
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       images=($(gcloud artifacts docker tags list us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma | awk '{ printf "%10s\n", $1 }' | tr '\r\n' ' '))
+        
+  #       count=$(gcloud artifacts docker tags list us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma | wc -l)
+  #       count=$(( $count - 1 ))
+       
+  #       echo "count = $count"
+
+  #       echo "Value = ${images[$count]}"
+
+  #       export build_tag=${images[$count]}
+
+  #       env | grep "^build_" > /workspace/tag_val
+  # Build the new docker image.
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       source /workspace/tag_val &&
+  #       docker pull us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma:$build_tag
+  #       docker tag us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma:$build_tag us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/soma:latest
+        
+  #       docker build --build-arg TOKEN=$$NPM_TOKEN -t cb-feature -f Dockerfile.cloudbuild.test .
+  #   secretEnv: ['NPM_TOKEN']
+  # Run the app and dependencies in the background using docker-compose.
+  # Warning: this won't be cleaned up, which might be an issue if you run it with the local builder.
+  # - name: 'docker/compose:1.15.0'
+  #   args: ['up', '-d']
+  # Run the integration tests against the running docker-compose stack.
+  # - name: 'gcr.io/cloud-builders/npm'
+  #   entrypoint: 'bash'
+  #   secretEnv: ['NPM_TOKEN']
+  #   args:
+  #     - '-c'
+  #     - |
+  #       echo "//registry.npmjs.org/:_authToken=$$NPM_TOKEN \n @mosaic-cx:registry=https://npm.pkg.github.com/" > ~/.npmrc
+
+  #       npm set //npm.pkg.github.com/:_authToken=$$NPM_TOKEN
+
+  #       export ENV=cb
+  #       export CBHOST=http://soma:8080
+
+  #       npm install
+
+  #       npm audit fix
+
+  #       npm run integration-tests
+  - name: node:14
+    entrypoint: bash
+    args: 
+    - '-c'
+    - |
+      #Declare variable so we can use in step 3 & 4
+      echo "TAG --- $TAG_NAME"
+      #We have 3 environments for redis (defined in env.json)
+      if [[ $TAG_NAME == *"prod"* ]]; then
+        if [[ $PROJECT_ID == 'iva-client-feature-prod' ]]; then
+          export build_environment='prod'
+        else
+          exit -1
+        fi
+      fi
+
+      if [[ $TAG_NAME == *"stage"* ]]; then
+        if [[ $PROJECT_ID == 'iva-client-feature-nonprod' ]]; then
+          export build_environment='dev'
+        else
+          export build_environment='dev'
+        fi
+      fi
+      version=$(node -p -e "require('./package.json').version")
+
+      export build_appname=$(node -p -e "require('./package.json').name") &&
+      export build_version=v${version//.} &&
+      export build_region='us-central1' &&
+      # export build_txl_pubsub_topic='projects/$PROJECT_ID/topics/transactional-logging-pubsub-topic' &&
+      export build_client='clients' &&
+      export build_image="us-docker.pkg.dev/$PROJECT_ID/$build_client/$build_appname" &&
+
+      env | grep "^build_" > /workspace/build_vars
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        source /workspace/build_vars &&
+        if [[ $(gcloud artifacts docker tags list $build_image | grep $build_version | wc -l) == 1 ]]; then
+          export digest=$(gcloud artifacts docker images describe $build_image:$build_version --format 'value(image_summary.digest)') &&
+          env | grep "^digest" > /workspace/digest_val
+        fi
+
+        # Storing the revision names in a variable if already exists with the same version to delete after deployment
+
+        export revisions_arr=$(gcloud run revisions list --service=$build_appname --region=$build_region --platform=managed | grep $build_appname-$build_version- | awk '{ printf "%10s\n", $2 }')
+        echo "Revisions = $revisions_arr"
+        env | grep "^revisions_" > /workspace/revision_val
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        source /workspace/build_vars &&
+
+        echo "*****************************************************************"
+        echo "Name        = $build_appname"
+        echo "Version     = $build_version"
+        echo "Region      = $build_region"
+        echo "Client      = $build_client"
+        echo "Project     = $PROJECT_ID"
+        echo "Image       = $build_image"
+        echo "Environment = $build_environment"
+        echo "Tag         = $TAG_NAME"
+        echo "*****************************************************************"
+
+        # Build docker image and push to the artifact registry
+
+        docker build --build-arg NPM_TOKEN=$$NPM_TOKEN -t "${build_appname}:$build_version" -f Dockerfile.cloudbuild.main .
+        
+        docker tag "${build_appname}:$build_version" "${build_image}:$build_version"
+        docker push "${build_image}:$build_version"
+    secretEnv: ['NPM_TOKEN']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        source /workspace/build_vars &&
+        
+        gcloud --project "$PROJECT_ID" run deploy "$build_appname" --image="${build_image}:$build_version" \
+        --platform=managed \
+        --region="$build_region" \
+        --port=default \
+        --no-allow-unauthenticated \
+        --tag="$build_version" \
+        --vpc-connector=connector-"$build_region" \
+        --vpc-egress=all-traffic \
+        --min-instances=1 \
+        --timeout=60s \
+        --max-instances=1000 \
+        --revision-suffix="${build_version}-$SHORT_SHA" \
+        --update-env-vars=VERSION="$build_version" \
+        --update-env-vars=ENV="$build_environment" \
+        --update-env-vars=PROJECT_ID=$PROJECT_ID
+
+        # --update-env-vars=TXL_PUBSUB_TOPIC=${build_txl_pubsub_topic}
+
+        # Update all the server traffic to newly deployed revision
+        gcloud run services update-traffic $build_appname --to-revisions ${build_appname}-${build_version}-$SHORT_SHA=100 --region=$build_region --platform=managed
+
+        # delete old docker images from artifact if exists
+        if [ -e /workspace/digest_val ]; then
+          source /workspace/digest_val &&
+        
+          if [ -z "$digest" ]; then
+            echo "Building new Version..";
+          else
+            echo "deleting old docker instance.."
+            gcloud artifacts docker images delete ${build_image}@$digest
+          fi
+        fi
+
+        # delete old revisions in the cloudrun if the version already exists
+        if [ -e /workspace/revision_val ]; then
+          source /workspace/revision_val &&
+          if [ -z "$revisions_arr" ]; then
+            echo "No revisions to delete."
+          else
+            echo "About to delete revisions = $revisions_arr"
+            revs=($revisions_arr)
+            for rev in "${revs[@]}" ; do
+              if [ -z "${rev}" ]; then
+                echo "No revisions in variable = ${rev}"
+              else 
+                gcloud beta run revisions delete ${rev} --region=$build_region --platform=managed --quiet
+              fi
+            done
+          fi
+        fi
+        echo "Operation Successfull"
+  
+  # When we will add the unit test, we'll have to uncomment this and test how it works
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       docker kill $(docker ps -q)
+  #       docker ps
+  #       echo "DONE"
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_NUMBER/secrets/npm-token/versions/latest
+    env: 'NPM_TOKEN' 

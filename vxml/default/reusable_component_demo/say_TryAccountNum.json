@@ -1,0 +1,22 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_TryAccountNum.wav",
+                "verbiage": "Let's try something else."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "prompt",
+                "module": "default",
+                "component": "call_wrap",
+                "node": "prompt_CallWrap",
+                "contained": true,
+                "completed": false
+            }
+        }
+    }
+}

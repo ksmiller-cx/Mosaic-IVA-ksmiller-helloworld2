@@ -1,0 +1,29 @@
+{
+    "type": "transfer",
+    "en-us": {
+        "transfer_type": "bridge",
+        "method": "bridge",
+        "reason": "Business Rule",
+        "sub_reason": "",
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "greeting",
+                "node": "say_Greeting"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

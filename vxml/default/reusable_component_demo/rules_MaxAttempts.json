@@ -1,0 +1,20 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "yes": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_PhoneNumNoMatch"
+            },
+            "no": {
+                "type": "prompt",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "prompt_PhoneNumRetry"
+            }
+        }
+    }
+}

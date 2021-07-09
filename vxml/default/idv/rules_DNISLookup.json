@@ -1,0 +1,20 @@
+{
+    "type": "rules",
+    "version": 2,
+    "en-us": {
+        "actions": {
+            "greeting": {
+                "type": "say",
+                "module": "default",
+                "component": "idv",
+                "node": "say_ANIMatchStart"
+            },
+            "transfer_answer": {
+                "type": "prompt",
+                "module": "default",
+                "component": "transfer",
+                "node": "prompt_TransferType"
+            }
+        }
+    }
+}

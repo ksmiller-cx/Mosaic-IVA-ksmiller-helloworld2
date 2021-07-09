@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_Greeting.wav",
+                "verbiage": "Hi there! I'm Mosaic, Intrado's virtual assistant."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "prompt",
+                "module": "default",
+                "component": "greeting",
+                "node": "prompt_MainMenu"
+            }
+        }
+    }
+}

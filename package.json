@@ -1,0 +1,53 @@
+{
+  "name": "feature-demo",
+  "version": "1.0.0",
+  "description": "IVA application to demo product features",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest",
+    "run-dev": "set DEBUG=koa*,neuron*,app:*,rc:*&& set PORT=8081&& set REDIS_HOST=127.0.0.1&& set REDIS_PORT=6379&& set VERSION=v0-1-0&& set project_id=ee-appeng-devtest&& set env=local&& nodemon index.js",
+    "redis": "docker run -d --rm --name redis -p 127.0.0.1:6379:6379 us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/redis",
+    "update-neuron-cmd": "pwsh -Command \"Remove-Item -Recurse -Force node_modules/neuron && git clone https://c24c76aad0fd35c4859c3e9cbbaba0e2879e8a83:x-oauth-basic@repo.west.com/Enterprise-Communications/Mosaic-IVA-Nerve-Neuron.git node_modules/neuron\"",
+    "integration-tests": "set DEBUG=koa*,neuron*,app:*,rc:*&&set PORT=8081&& set ENV=local&& set VERSION=v0-1-0&& jest --env=node --forceExit --runInBand",
+    "integration-tests-no-output": "set DEBUG=koa*,neuron*,app:*,rc:*&&set PORT=8081&& set REDIS_HOST=127.0.0.1&& set REDIS_PORT=6379&& set VERSION=v0-1-0&& jest --env=node --silent=true --forceExit --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mosaic-cx/ivap-feature-demo.git"
+  },
+  "keywords": [
+    "nerve",
+    "neuron",
+    "diva",
+    "iva"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/profiler": "^4.1.2",
+    "@google-cloud/trace-agent": "^5.1.3",
+    "@mosaic-cx/neuron": "^1.0",
+    "@mosaic-cx/rc_get_account_or_card": "1.0.1",
+    "@mosaic-cx/rc_get_phone_num": "1.0.1",
+    "@mosaic-cx/rc_get_street_num": "1.0.1",
+    "axios": "^0.21.0",
+    "koa": "^2.13.0",
+    "xmldom": "^0.5.0",
+    "xpath": "^0.0.32"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.1.2"
+  }
+}

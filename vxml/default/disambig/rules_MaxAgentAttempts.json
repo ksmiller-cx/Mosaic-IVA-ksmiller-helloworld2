@@ -1,0 +1,20 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "yes": {
+                "type": "prompt",
+                "module": "default",
+                "component": "transfer",
+                "node": "prompt_TransferType"
+            },
+            "no": {
+                "type": "prompt",
+                "module": "default",
+                "component": "disambig",
+                "node": "prompt_GlobalAgent"
+            }
+        }
+    }
+}

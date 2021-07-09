@@ -1,0 +1,66 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "bill_address": {
+                "type": "say",
+                "module": "default",
+                "component": "faq",
+                "node": "say_MailingAddress",
+                "completed": true,
+                "contained": true
+            },
+            "hours": {
+                "type": "say",
+                "module": "default",
+                "component": "faq",
+                "node": "say_HoursFAQ",
+                "completed": true,
+                "contained": true
+            },
+            "payment_make": {
+                "type": "prompt",
+                "module": "default",
+                "component": "payment",
+                "node": "prompt_PaymentAmount",
+                "completed": true,
+                "contained": true
+            },
+            "payment_make_past_due": {
+                "type": "prompt",
+                "module": "default",
+                "component": "payment",
+                "node": "prompt_GetCardNum",
+                "completed": true,
+                "contained": true
+            },
+            "internet_issue": {
+                "type": "say",
+                "module": "default",
+                "component": "tech_support",
+                "node": "say_AccountLookup",
+                "completed": true,
+                "contained": true
+            },
+            "reusable_component_demo": {
+                "type": "rules",
+                "module": "default",
+                "component": "rc_get_phone_num",
+                "node": "start",
+                "args": {},
+                "completed": true,
+                "contained": true
+            },
+            "bank_lookup": {
+                "type": "rules",
+                "module": "default",
+                "component": "rc_get_account_or_card",
+                "node": "start",
+                "args": {},
+                "completed": true,
+                "contained": true
+            }
+        }
+    }
+}

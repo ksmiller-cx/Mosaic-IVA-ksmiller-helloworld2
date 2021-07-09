@@ -1,0 +1,14 @@
+{
+    "type": "rules",
+    "version": 1,
+    "en-us": {
+        "actions": {
+            "always": {
+                "type": "exit",
+                "module": "default",
+                "component": "global",
+                "node": "exit"
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "dialogflow": {
+            "contexts": [
+                "transfer-sip_blind",
+                "transfer-sip_bridge",
+                "transfer-star_8"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": false,
+                    "verbiage": "I can connect you by blind, bridge or star eight. Which would you like?",
+                    "audio_url": "prompt_TransferType.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "That's blind, bridge, or star-eight. How would you like to be transferred?",
+                        "audio_url": "prompt_TransferType_NI1.wav",
+                        "conditional": ""
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Try saying blind transfer, bridge transfer, or star-eight.",
+                        "audio_url": "prompt_TransferType_NI2.wav",
+                        "conditional": ""
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, what was that?",
+                        "audio_url": "prompt_TransferType_NM1.wav",
+                        "conditional": ""
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Try saying blind transfer, bridge transfer, or star-eight. Which do you want?",
+                        "audio_url": "prompt_TransferType_NM2.wav",
+                        "conditional": ""
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "transfer-sip_blind": {
+                "type": "transfer",
+                "module": "default",
+                "component": "transfer",
+                "node": "transfer_BasicSipBlindUUI"
+            },
+            "transfer-sip_bridge": {
+                "type": "transfer",
+                "module": "default",
+                "component": "transfer",
+                "node": "transfer_BasicBridgeUUI"
+            },
+            "transfer-star_8": {
+                "type": "transfer",
+                "module": "default",
+                "component": "transfer",
+                "node": "transfer_Network"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

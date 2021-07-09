@@ -1,0 +1,20 @@
+{
+    "type": "transfer",
+    "en-us": {
+        "transfer_type": "network",
+        "method": "blind",
+        "dest": "8772469586",
+        "invoke_digits": "#*8",
+        "post_invoke_wait_time": "2s",
+        "reason": "Business Rule",
+        "sub_reason": "",
+        "actions": {
+            "always": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

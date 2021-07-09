@@ -1,0 +1,94 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "secure_slot": true,
+        "dialogflow": {
+            "agent": "pci",
+            "audioConfig" : {
+                "speechContexts": [
+                    {
+                        "phrases": [
+                            "$OOV_CLASS_DIGIT_SEQUENCE"
+                        ]
+                    }
+                ]
+            },
+            "contexts": [
+                "payment-card_num"
+            ],
+            "vxml_properties": {
+                "inputmodes": "dtmf voice",
+                "termchar": "#"
+            }
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "What's your card number?",
+                    "audio_url": "prompt_GetCardNum.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Card number please.",
+                        "audio_url": "prompt_GetCardNum_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try once more. What's the card number?",
+                        "audio_url": "prompt_GetCardNum_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, what's that number again?",
+                        "audio_url": "prompt_GetCardNum_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try once more. What's the card number?",
+                        "audio_url": "prompt_GetCardNum_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "card_num": {
+                "type": "say",
+                "module": "default",
+                "component": "payment",
+                "node": "say_PaymentSuccess"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

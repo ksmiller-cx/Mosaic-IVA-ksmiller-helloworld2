@@ -1,0 +1,92 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "defer_action": true,
+        "dialogflow": {
+            "contexts": [
+                "top"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "Alright. And what seems to be the issue?",
+                    "audio_url": "prompt_TechSupport.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "For example, slow internet.",
+                        "audio_url": "prompt_TechSupport_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "What type of technical support do you need?",
+                        "audio_url": "prompt_TechSupport_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, what was that again?",
+                        "audio_url": "prompt_TechSupport_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, I can help you with things like, slow internet. So what type of technical support do you need?",
+                        "audio_url": "prompt_TechSupport_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "auth_required": {
+                "type": "rules",
+                "module": "default",
+                "component": "idv",
+                "node": "rules_DNISLookup"
+            },
+            "disambig": {
+                "type": "rules",
+                "module": "default",
+                "component": "disambig",
+                "node": "rules_DisambigIntentAction"
+            },
+            "intent_actions": {
+                "type": "rules",
+                "module": "default",
+                "component": "intent_actions",
+                "node": "rules_IntentActions"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

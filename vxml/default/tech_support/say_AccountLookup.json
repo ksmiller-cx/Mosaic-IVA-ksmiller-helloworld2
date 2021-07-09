@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 2,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_AccountLookup.wav",
+                "verbiage": "Internet problems can be so frustrating. Let me pull up your information."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "rules",
+                "module": "default",
+                "component": "tech_support",
+                "node": "rules_AccountLookup"
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "transfer",
+    "en-us": {
+        "transfer_type": "sip_refer",
+        "method": "blind",
+        "reason": "Business Rule",
+        "sub_reason": "",
+        "actions": {
+            "success": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+[
+    {
+        "action_type": "prompt",
+        "event_type": "response",
+        "event_data": [
+            {
+                "confidence": 1,
+                "utterance": "1 2 3",
+                "inputmode": "dtmf",
+                "dtmfmode": "rfc2833",
+                "language": "",
+                "interpretation": "123"
+            }
+        ]
+    }
+]

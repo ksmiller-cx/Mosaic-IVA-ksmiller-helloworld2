@@ -1,0 +1,95 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "dialogflow": {
+            "audioConfig" : {
+                "speechContexts": [
+                    {
+                        "phrases": [
+                            "$MONEY"
+                        ],
+                        "boost": 15
+                    },
+                    {
+                        "phrases": [
+                            "I'd like to pay $MONEY"
+                        ],
+                        "boost": 10
+                    }
+                ]
+            },
+            "contexts": [
+                "payment-payment_amount"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "How much would you like to pay today?",
+                    "audio_url": "prompt_PaymentAmount.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "How much would you like to pay today?",
+                        "audio_url": "prompt_PaymentAmount_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "How much would you like to pay today?",
+                        "audio_url": "prompt_PaymentAmount_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "How much would you like to pay today?",
+                        "audio_url": "prompt_PaymentAmount_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "How much would you like to pay today?",
+                        "audio_url": "prompt_PaymentAmount_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "payment_amount": {
+                "type": "prompt",
+                "module": "default",
+                "component": "payment",
+                "node": "prompt_GetCardNum"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

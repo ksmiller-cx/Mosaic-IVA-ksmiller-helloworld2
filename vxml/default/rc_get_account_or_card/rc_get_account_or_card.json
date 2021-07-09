@@ -1,0 +1,30 @@
+{
+    "type": "rules",
+    "en-us": {
+        "actions": {
+            "success": {
+                "type": "say",
+                "module": "default",
+                "component": "account_num",
+                "node": "say_AccountNumComplete",
+                "return_values": {
+                    "account_num": "account_num"
+                }
+            },
+            "idk": {
+                "type": "say",
+                "module": "default",
+                "component": "account_num",
+                "node": "say_AccountNumComplete",
+                "return_values": {}
+            },
+            "agent": {
+                "type": "say",
+                "module": "default",
+                "component": "account_num",
+                "node": "say_AccountNumComplete",
+                "return_values": {}
+            }
+        }
+    }
+}

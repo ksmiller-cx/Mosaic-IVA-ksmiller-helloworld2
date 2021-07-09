@@ -1,0 +1,101 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "dialogflow": {
+            "contexts": [
+                "rc-yes",
+                "rc-no",
+                "rc-start_over",
+                "rc-agent"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "Sorry, that didn't match. Do you want to try again?",
+                    "audio_url": "prompt_PhoneNumRetry.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "That didn't match to an account. Would you like to try another phone number?",
+                        "audio_url": "prompt_PhoneNumRetry_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try it this way. To try again, press 1. Otherwise, press 2.",
+                        "audio_url": "prompt_PhoneNumRetry_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, would you like to try another phone number?",
+                        "audio_url": "prompt_PhoneNumRetry_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Let's try it this way. To try again, press 1. Otherwise, press 2.",
+                        "audio_url": "prompt_PhoneNumRetry_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "yes": {
+                "type": "rules",
+                "module": "default",
+                "component": "rc_get_phone_num",
+                "node": "start",
+                "args": {}
+            },
+            "no": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_TryAccountNum"
+            },
+            "start_over": {
+                "type": "prompt",
+                "module": "default",
+                "component": "greeting",
+                "node": "prompt_MainMenu"
+            },
+            "agent": {
+                "type": "prompt",
+                "module": "default",
+                "component": "transfer",
+                "node": "prompt_TransferType"
+            },
+            "max_fail": {
+                "type": "say",
+                "module": "default",
+                "component": "reusable_component_demo",
+                "node": "say_TryAccountNum"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

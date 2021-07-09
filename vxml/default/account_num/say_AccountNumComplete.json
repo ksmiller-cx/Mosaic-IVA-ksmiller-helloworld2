@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_AccountNumComplete.wav",
+                "verbiage": "Got it. Thanks!"
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 2,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_GizmoBroken.wav",
+                "verbiage": "<speak>One moment <break time='1.75s'/> Hmmm, I see that your equipment is online. The issue seems to be caused by an outdated gizmo. Let me connect you to a widget expert, who can ship you a new one.</speak>"
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "prompt",
+                "module": "default",
+                "component": "transfer",
+                "node": "prompt_TransferType"
+            }
+        }
+    }
+}

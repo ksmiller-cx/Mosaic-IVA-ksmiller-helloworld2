@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "0c1753c6-28a0-4e25-b76b-03a77af67a35",
+		"name": "Nerve Feature Demo CR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "vxml/global/index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid');\r",
+							"var conversation_id = uuid.v4();\r",
+							"pm.environment.set(\"conversation_id\", conversation_id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{soma}}/vxml/global/index?app_host={{app_host}}",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"global",
+						"index"
+					],
+					"query": [
+						{
+							"key": "app_host",
+							"value": "{{app_host}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/global/start",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true,
+					"user-agent": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer: {{token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x_proxy_base_url",
+						"value": "https://feature-demo-4nvo6qcowa-uc.a.run.app",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "app_host",
+							"value": "{{app_host}}",
+							"type": "text"
+						},
+						{
+							"key": "conversation_id",
+							"value": "{{conversation_id}}",
+							"type": "text"
+						},
+						{
+							"key": "ani",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "dnis",
+							"value": "1234567",
+							"type": "text"
+						},
+						{
+							"key": "holly_callid",
+							"value": "test-test-000",
+							"type": "text"
+						},
+						{
+							"key": "holly_host",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "holly_affiliate",
+							"value": "Internal",
+							"type": "text"
+						},
+						{
+							"key": "holly_application",
+							"value": "feature demo",
+							"type": "text"
+						},
+						{
+							"key": "holly_serviceprovider",
+							"value": "MosaicCX",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/global/start",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"global",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/greeting/say_greeting",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\",\r\n    \"results\": \"[ { \\\"action_type\\\": \\\"say\\\", \\\"event_type\\\": \\\"played\\\", \\\"event_data\\\": null } ]\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/greeting/say_greeting",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"greeting",
+						"say_greeting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/greeting/prompt_main_menu",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"action\", \"pay_past_due_balance\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\",\r\n    \"results\": \"[{\\\"action_type\\\":\\\"prompt\\\",\\\"event_type\\\":\\\"response\\\",\\\"event_data\\\":[{\\\"interpretation\\\":{\\\"responseId\\\":\\\"73807072-c35a-4b1a-80f1-62467fc9b90c-ce5e18e2\\\",\\\"queryResult\\\":{\\\"queryText\\\":\\\"yes\\\",\\\"action\\\":\\\"{{action}}\\\",\\\"parameters\\\":{\\\"foo\\\": \\\"bar\\\"},\\\"allRequiredParamsPresent\\\":true,\\\"fulfillmentText\\\":\\\"yes\\\",\\\"fulfillmentMessages\\\":[{\\\"text\\\":{\\\"text\\\":[\\\"yes\\\"]}}],\\\"outputContexts\\\":[{\\\"name\\\":\\\"projects/ce-intrado-ccai-poc-sandbox-01/agent/sessions/9fc2a407-29ac-520a-9e74-3ea64c287148/contexts/repair-gen-model-followup\\\",\\\"lifespanCount\\\":2,\\\"parameters\\\":{\\\"Model.original\\\":\\\"eos\\\",\\\"Model\\\":\\\"eos\\\"}}],\\\"intent\\\":{\\\"name\\\":\\\"projects/ce-intrado-ccai-poc-sandbox-01/agent/intents/3f7302d1-7f36-4394-b41f-764d8b7e9a26\\\",\\\"displayName\\\":\\\"say_Repair-Gen-Model - yes\\\",\\\"liveAgentHandoff\\\":true,\\\"endInteraction\\\":true},\\\"intentDetectionConfidence\\\":1,\\\"diagnosticInfo\\\":{\\\"end_conversation\\\":true},\\\"languageCode\\\":\\\"en\\\",\\\"sentimentAnalysisResult\\\":{\\\"queryTextSentiment\\\":{\\\"score\\\":0.6,\\\"magnitude\\\":0.6}}}}}]}]\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/greeting/prompt_main_menu",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"greeting",
+						"prompt_main_menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/dtmf_test/prompt_dtmf_menu",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"interpretation\", \"123\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\",\r\n    \"results\": \"[{\\\"action_type\\\":\\\"prompt\\\",\\\"event_type\\\":\\\"response\\\",\\\"event_data\\\":[{\\\"interpretation\\\":\\\"{{interpretation}}\\\"}]}]\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/dtmf_test/prompt_dtmf_menu",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"dtmf_test",
+						"prompt_dtmf_menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/tech_support/account_lookup",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/tech_support/account_lookup",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"tech_support",
+						"account_lookup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vxml/default/rc_phonenum/rc_start",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/rc_phonenum/rc_start",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"rc_phonenum",
+						"rc_start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/vxml/default/global/end",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversation_id\": \"{{conversation_id}}\",\r\n    \"app_host\": \"{{app_host}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{soma}}/vxml/default/global/end",
+					"host": [
+						"{{soma}}"
+					],
+					"path": [
+						"vxml",
+						"default",
+						"global",
+						"end"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cx-nonprod-dev.apigee.net/feature-demo-example",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cx-nonprod-dev.apigee.net/feature-demo-example",
+					"protocol": "https",
+					"host": [
+						"cx-nonprod-dev",
+						"apigee",
+						"net"
+					],
+					"path": [
+						"feature-demo-example"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}

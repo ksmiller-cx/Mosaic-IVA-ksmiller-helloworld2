@@ -1,0 +1,14 @@
+{
+    "type": "rules",
+    "node": "error",
+    "en-us": {
+        "actions": {
+            "always": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

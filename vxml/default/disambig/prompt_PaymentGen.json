@@ -1,0 +1,92 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "defer_action": true,
+        "dialogflow": {
+            "contexts": [
+                "top"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "Alright. I can help you do things like, pay a bill, hear your balance, get an extension, and more. How can I help you with your payment?",
+                    "audio_url": "prompt_PaymentGen.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "I understand you're calling about your payment. How can I help you with it?",
+                        "audio_url": "prompt_PaymentGen_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Again, how can I help you with your payment?",
+                        "audio_url": "prompt_PaymentGen_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, what was that again?",
+                        "audio_url": "prompt_PaymentGen_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "I understand you're calling about your payment. How can I help you with it?",
+                        "audio_url": "prompt_PaymentGen_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "auth_required": {
+                "type": "rules",
+                "module": "default",
+                "component": "idv",
+                "node": "rules_DNISLookup"
+            },
+            "disambig": {
+                "type": "rules",
+                "module": "default",
+                "component": "disambig",
+                "node": "rules_DisambigIntentAction"
+            },
+            "intent_actions": {
+                "type": "rules",
+                "module": "default",
+                "component": "intent_actions",
+                "node": "rules_IntentActions"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

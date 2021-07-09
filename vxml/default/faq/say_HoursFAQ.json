@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 2,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_HoursFAQ.wav",
+                "verbiage": "The Mosaic CX offices are open 8am to 5pm, Monday through Friday."
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "prompt",
+                "module": "default",
+                "component": "call_wrap",
+                "node": "prompt_CallWrap"
+            }
+        }
+    }
+}

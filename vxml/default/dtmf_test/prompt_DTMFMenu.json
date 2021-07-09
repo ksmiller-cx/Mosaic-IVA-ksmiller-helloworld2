@@ -1,0 +1,123 @@
+{
+    "type": "prompt",
+    "version": 3,
+    "en-us": {
+        "defer_action": true,
+        "grammar": {
+            "url": "builtin:dtmf/digits?length=3",
+            "method": "builtin-dtmf"
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "What would you like to do today?",
+                    "audio_url": "prompt_DTMFMenu.wav",
+                    "conditional": ""
+                },
+                {
+                    "barge_in": true,
+                    "verbiage": "Tell me, what would you like to do today?",
+                    "audio_url": "prompt_DTMFMenu2.wav",
+                    "conditional": ""
+                },
+                {
+                    "barge_in": true,
+                    "verbiage": "What would you like to do today? You can say something like tech support.",
+                    "audio_url": "prompt_DTMFMenu3.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_ni1_1.wav"
+                    },
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_ni1_2.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_ni2_1.wav"
+                    },
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_ni2_2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_nm1_1.wav"
+                    },
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_nm1_2.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_nm2_1.wav"
+                    },
+                    {
+                        "barge_in": true,
+                        "verbiage": "What would you like to do today?",
+                        "audio_url": "prompt_DTMFMenu_nm2_2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "110": {
+                "type": "transfer",
+                "module": "default",
+                "component": "transfer",
+                "node": "transfer_Network"
+            },
+            "111": {
+                "type": "say",
+                "module": "default",
+                "component": "tech_support",
+                "node": "say_AccountLookup"
+            },
+            "123": {
+                "type": "say",
+                "module": "default",
+                "component": "greeting",
+                "node": "say_Greeting"
+            },
+            "456": {
+                "type": "transfer",
+                "module": "default",
+                "component": "transfer",
+                "node": "transfer_BasicBridgeUUI"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}

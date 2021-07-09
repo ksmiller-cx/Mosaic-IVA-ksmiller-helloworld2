@@ -1,0 +1,20 @@
+{
+    "type": "say",
+    "version": 1,
+    "en-us": {
+        "speech": [
+            {
+                "audio_url": "say_Infinite.wav",
+                "verbiage": "Hi there! Music music music"
+            }
+        ],
+        "actions": {
+            "always": {
+                "type": "say",
+                "module": "default",
+                "component": "greeting",
+                "node": "say_Infinite"
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+FROM us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/node:lts-buster-slim
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+ARG TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=${TOKEN} \n @mosaic-cx:registry=https://npm.pkg.github.com/" > ~/.npmrc
+RUN npm set //npm.pkg.github.com/:_authToken=$TOKEN
+COPY .npmrc ./.npmrc
+
+RUN npm install
+
+# Bundle app source
+COPY . .
+
+CMD [ "node", "index.js" ] 

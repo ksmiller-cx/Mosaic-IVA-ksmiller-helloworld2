@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.json.ejs": "json"
+    },
+    "eslint.lintTask.enable": true
+}

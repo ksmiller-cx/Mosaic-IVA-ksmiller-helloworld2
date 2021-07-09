@@ -1,0 +1,92 @@
+{
+    "type": "prompt",
+    "version": 4,
+    "en-us": {
+        "defer_action": true,
+        "dialogflow": {
+            "contexts": [
+                "top"
+            ]
+        },
+        "speech": {
+            "initial": [
+                {
+                    "barge_in": true,
+                    "verbiage": "To better assist you, what can we help you with today?",
+                    "audio_url": "prompt_GlobalAgent.wav",
+                    "conditional": ""
+                }
+            ],
+            "no_input": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "For example, you might want to make a payment, get tech support or talk to sales about an upgrade. So, how can I help?",
+                        "audio_url": "prompt_GlobalAgent_NI1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Hello? I can also help you find our office or answer basic questions about Mosaic. So, what can I help you with today?",
+                        "audio_url": "prompt_GlobalAgent_NI2.wav"
+                    }
+                ]
+            ],
+            "no_match": [
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "Sorry, I can help with things like, payments, tech support, service upgrades, and more. So, what can I help you with?",
+                        "audio_url": "prompt_GlobalAgent_NM1.wav"
+                    }
+                ],
+                [
+                    {
+                        "barge_in": true,
+                        "verbiage": "I'll have to read up on that. For now, try saying it in just a few words, like make a payment, tech support, sales, or something like that. So, what would you like to do?",
+                        "audio_url": "prompt_GlobalAgent_NM2.wav"
+                    }
+                ]
+            ]
+        },
+        "actions": {
+            "auth_required": {
+                "type": "rules",
+                "module": "default",
+                "component": "idv",
+                "node": "rules_DNISLookup"
+            },
+            "disambig": {
+                "type": "rules",
+                "module": "default",
+                "component": "disambig",
+                "node": "rules_DisambigIntentAction"
+            },
+            "intent_actions": {
+                "type": "rules",
+                "module": "default",
+                "component": "intent_actions",
+                "node": "rules_IntentActions"
+            },
+            "max_fail": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "hangup": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            },
+            "error": {
+                "type": "end",
+                "module": "default",
+                "component": "global",
+                "node": "end"
+            }
+        }
+    }
+}
