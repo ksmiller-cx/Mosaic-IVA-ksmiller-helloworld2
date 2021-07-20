@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "jest",
-    "run-dev": "set DEBUG=koa*,neuron*,app:*,rc:*&& set PORT=8081&& set REDIS_HOST=127.0.0.1&& set REDIS_PORT=6379&& set VERSION=v0-1-0&& set project_id=ee-appeng-devtest&& set env=local&& nodemon index.js",
-    "redis": "docker run -d --rm --name redis -p 127.0.0.1:6379:6379 us-docker.pkg.dev/ivr-divasp-prod-01/iva-product/redis",
+    "run-dev": "set DEBUG=koa*,neuron*,app:*,rc:*&& set PORT=8081&& set REDIS_HOST=127.0.0.1&& set REDIS_PORT=6379&& set VERSION=v0-1-0&& set project_id=iva-df-developr-ksmiller-dev&& set env=local&& nodemon index.js",
+    "redis": "docker run -d --rm --name redis -p 127.0.0.1:6379:6379 us-docker.pkg.dev/ivr-divasp-prodd-01/iva-product/redis",
     "update-neuron-cmd": "pwsh -Command \"Remove-Item -Recurse -Force node_modules/neuron && git clone https://c24c76aad0fd35c4859c3e9cbbaba0e2879e8a83:x-oauth-basic@repo.west.com/Enterprise-Communications/Mosaic-IVA-Nerve-Neuron.git node_modules/neuron\"",
     "integration-tests": "set DEBUG=koa*,neuron*,app:*,rc:*&&set PORT=8081&& set ENV=local&& set VERSION=v0-1-0&& jest --env=node --forceExit --runInBand",
     "integration-tests-no-output": "set DEBUG=koa*,neuron*,app:*,rc:*&&set PORT=8081&& set REDIS_HOST=127.0.0.1&& set REDIS_PORT=6379&& set VERSION=v0-1-0&& jest --env=node --silent=true --forceExit --runInBand"
